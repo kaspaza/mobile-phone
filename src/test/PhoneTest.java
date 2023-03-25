@@ -49,5 +49,34 @@ public class PhoneTest {
                 phone.addNewContact(new Contact("Tom", "123")));
     }
 
+    @Test
+    public void shouldRemoveContactNamedKate() {
+        Contact contact = new Contact("Kate", "123");
+        phone.addNewContact(contact);
+        phone.removeContact(contact);
+        String expectedPrint = "Contact named: Kate has been removed";
+        assertEquals(expectedPrint,outputStreamCaptor.toString().trim());
+    }
+
+    @Test
+    public void queryContactKateShoudNotBeNull() {
+        phone.addNewContact(new Contact("Kate", "123"));
+        assertNotNull(phone.queryContact("Kate"));
+    }
+
+    @Test
+    public void queryContactTomShoudBeNull() {
+        phone.addNewContact(new Contact("Kate", "123"));
+        assertNull(phone.queryContact("Tom"));
+    }
+
+    @Test
+    public void updatingContactTom123ByHarry321ShouldBePrinted() {
+        Contact tom = new Contact("Tom", "123");
+        phone.addNewContact(tom);
+        phone.updateContact(tom, new Contact("Harry", "321"));
+        String expectedPrint = "Contact: Tom: 123 was replaced by Harry: 321";
+        assertEquals(expectedPrint.trim(), outputStreamCaptor.toString().trim());
+    }
 
 }

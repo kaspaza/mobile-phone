@@ -99,12 +99,12 @@ public class Main {
 
     public static Contact askForContact() {
         System.out.println("Enter the contact name:");
-        String oldName = scanner.nextLine();
-        Contact oldContact = phone.queryContact(oldName);
-        if (oldContact == null) {
-            System.out.println("Contact named " + oldName + " does not exist");
+        String name = scanner.nextLine();
+        Contact contact = phone.queryContact(name);
+        if (contact == null) {
+            System.out.println("Contact named " + name + " does not exist");
             return null;
         }
-        return oldContact;
+        return contact;
     }
 }
